@@ -19,15 +19,18 @@ if __name__ == "__main__":
     minfilename = "../Output/min"
     publicwordPMIfilename = "../Dictionary/publicwordPMI"
     nonpublicwordpmifilename = "../Feature/nonpublicwordfreqge2"
+    relationattributefilename = "../Feature/RelationAtt"
 
     # 输出：
     FMatrixWithNPWfilename = "../Feature/FeatureMatrixWithNPW"
     FMatrixWithNPWsetZerofilename = "../Feature/FeatureMatrixWithNPWsetZero"
     FMatrixWithoutNPWfilename = "../Feature/FeatureMatrixWithoutNPW"
+    FMatrixWithNPWsetzeroRelationfilename = "../Feature/FeatureMatrixWithNPWRelation"
 
     arffwithNPWriter = open(FMatrixWithNPWfilename,"w")
     arffwithNPsetzeroWriter = open(FMatrixWithNPWsetZerofilename,"w")
     arffwithoutNPWriter = open(FMatrixWithoutNPWfilename,"w")
+    FMatrixWithNPWsetzeroRelationWriter = open(FMatrixWithNPWsetzeroRelationfilename,"w")
 
     emocNo=6962
     negNo = 6963
@@ -36,7 +39,11 @@ if __name__ == "__main__":
     dayNo = 6966
     hourNo = 6967
     minNo = 6968
-    sentimentNo = 6969
+    ParentsAttNo = 6969
+    ChildrenAttNo = 6970
+    TopicNo = 6971
+    TopicName = "obama"
+    sentimentNo = 6972
     try:
         sentimentreader = open(sentimentfilename,"r")
         yearreader = open(yearfilename,"r")
@@ -48,6 +55,16 @@ if __name__ == "__main__":
         nonpublicwordreader = open(nonpublicwordpmifilename,"r")
     except:
         print "error IO"
+
+
+    TweetNo=1
+    DicTweetRelationAtt={}
+    with open(relationattributefilename,"r") as relationattreader:
+        for relationatts in relationattreader:
+            relationattarr = relationatts.strip().split(" ")
+            DicTweetRelationAtt[TweetNo] = relationattarr
+            TweetNo = TweetNo+1
+    relationattreader.close()
 
     tweetNo=1
     tweetdic={}
@@ -90,7 +107,9 @@ if __name__ == "__main__":
     with open(precontentfilename,"r") as contentreader:
         for tweetcontent in contentreader:
             tweetNo = tweetNo+1
-            arffwithNPWriter.write("{"), arffwithoutNPWriter.write("{"),arffwithNPsetzeroWriter.write("{")
+            arffwithNPWriter.write("{"), arffwithoutNPWriter.write("{")
+            arffwithNPsetzeroWriter.write("{")
+            FMatrixWithNPWsetzeroRelationWriter.write("{")
             wordarr = tweetcontent.strip().split()
             num_EMO=0
             num_NEG=0
@@ -130,39 +149,48 @@ if __name__ == "__main__":
             wordwithNPsetzerodiclist = sorted(wordwithNPsetzerodic.items())
             for wordNo,value in wordwithNPsetzerodiclist:
                 arffwithNPsetzeroWriter.write(str(wordNo)+" "+str(value)+",")
+                FMatrixWithNPWsetzeroRelationWriter.write(str(wordNo)+" "+str(value)+",")
 
-            arffwithNPWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+str(num_NEG)+","+
-                str(yearNo)+" "+str(tweetdic[tweetNo][1])+","+
-                str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+
-                str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+
-                str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+
-                str(minNo)+" "+str(tweetdic[tweetNo][5])+","+
-    #            str(addminNo)+" "+str(num_ADD_MIN)+","+
-                str(sentimentNo)+" "+tweetdic[tweetNo][0]+"}\n")
-
-            arffwithoutNPWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+str(num_NEG)+","+
-                                   str(yearNo)+" "+str(tweetdic[tweetNo][1])+","+
-                                   str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+
-                                   str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+
-                                   str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+
-                                   str(minNo)+" "+str(tweetdic[tweetNo][5])+","+
-    #                               str(addminNo)+" "+str(num_ADD_MIN)+","+
+            arffwithNPWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+\
+                                   str(num_NEG)+","+str(yearNo)+" "+str(tweetdic[tweetNo][1])+\
+                                   ","+str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+\
+                                   str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+\
+                                   str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+\
+                                   str(minNo)+" "+str(tweetdic[tweetNo][5])+","+\
                                    str(sentimentNo)+" "+tweetdic[tweetNo][0]+"}\n")
 
-            arffwithNPsetzeroWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+str(num_NEG)+","+
-                                      str(yearNo)+" "+str(tweetdic[tweetNo][1])+","+
-                                      str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+
-                                      str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+
-                                      str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+
-                                      str(minNo)+" "+str(tweetdic[tweetNo][5])+","+
-    #                                  str(addminNo)+" "+str(num_ADD_MIN)+","+
+            arffwithoutNPWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+str(num_NEG)+","+\
+                                      str(yearNo)+" "+str(tweetdic[tweetNo][1])+","+\
+                                      str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+\
+                                      str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+\
+                                      str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+\
+                                      str(minNo)+" "+str(tweetdic[tweetNo][5])+","+\
                                       str(sentimentNo)+" "+tweetdic[tweetNo][0]+"}\n")
+
+            arffwithNPsetzeroWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+str(num_NEG)+","+\
+                                          str(yearNo)+" "+str(tweetdic[tweetNo][1])+","+\
+                                          str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+\
+                                          str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+\
+                                          str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+\
+                                          str(minNo)+" "+str(tweetdic[tweetNo][5])+","+\
+                                          str(sentimentNo)+" "+tweetdic[tweetNo][0]+"}\n")
+            FMatrixWithNPWsetzeroRelationWriter.write(str(emocNo)+" "+str(num_EMO)+","+str(negNo)+" "+str(num_NEG)+\
+                                                      ","+str(yearNo)+" "+str(tweetdic[tweetNo][1])+","+\
+                                                      str(monthNo)+" "+str(tweetdic[tweetNo][2])+","+\
+                                                      str(dayNo)+" "+str(tweetdic[tweetNo][3])+","+\
+                                                      str(hourNo)+" "+str(tweetdic[tweetNo][4])+","+\
+                                                      str(minNo)+" "+str(tweetdic[tweetNo][5])+","+\
+                                                      str(ParentsAttNo)+" "+str(DicTweetRelationAtt[tweetNo][0])+","+\
+                                                      str(ChildrenAttNo)+" "+str(DicTweetRelationAtt[tweetNo][1])+","+\
+                                                      str(TopicNo)+" "+TopicName+","+\
+                                                      str(sentimentNo)+" "+tweetdic[tweetNo][0]+"}\n")
     contentreader.close()
+
 
 
     arffwithNPWriter.flush(),arffwithNPWriter.close()
     arffwithoutNPWriter.flush(),arffwithoutNPWriter.close()
     arffwithNPsetzeroWriter.flush(),arffwithNPsetzeroWriter.close()
-
+    FMatrixWithNPWsetzeroRelationWriter.flush(),FMatrixWithNPWsetzeroRelationWriter.close()
 
 
