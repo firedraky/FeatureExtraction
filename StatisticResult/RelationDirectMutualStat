@@ -1,0 +1,10 @@
+单向相连的边中同时为正类的tweet数:128同时为中类的tweet数:562同时为负类的tweet数:367
+@边，两个tweet情感一致的数量:1057@边总数，但是不包含中性：948总的@边数:2992
+(Num_directatPositive+Num_directatNegative)/TotalNum_directatNonNetural0Num_directat/TotalNum_directat:0
+Num_mutialat,TotalNum_mutialat,Num_mutialat/TotalNum_mutialat111
+Num_positive:849Num_neturl:1148Num_negative:1235Random direct: 00
+random direct without netural:00
+number_all_parentssentiment/number_parents:0
+number_all_childrensentiment/number_children0
+number_one_parensentiment/number_one_parent0
+number_one_childsentiment/number_one_child0

@@ -24,12 +24,17 @@ def sortfilebyauthorname(authorfilename,sentimentfile):
         authorsentiment = authorname+"\t"+sentimentlabel
         listauthornamesentiment.append(authorsentiment)
     listauthornamesentiment.sort()
+    authorfilereader.close()
+    sentimentfilereader.close()
     return listauthornamesentiment
 
 if __name__ == "__main__":
-
+    # 输入：
     authornamefile = "../Output/author.name"
     sentimentfile = "../Output/label"
+    # 输出：
+    ConsistentResultfile = "../StatisticResult/SentimentConsistent"
+    authorSenConsiswriter = open(ConsistentResultfile,'w')
     listauthornamesentiment = sortfilebyauthorname(authornamefile,sentimentfile)
 
 
@@ -76,6 +81,14 @@ if __name__ == "__main__":
                 sameauthorsentimentlist=[sentiment]
 
     allmean=np.mean(allauthormeansentimentlist)
+    authorSenConsiswriter.write("所有作者的情感方差的均值为："+str(allmean)+'\n')
+    authorSenConsiswriter.write("作者数量（distinct）："+str(numauthor)+"\n")
+    authorSenConsiswriter.write("发表tweet数量大于等于2条的作者数："+str(numauthortweeteg2)+"\n")
+    authorSenConsiswriter.write("度大于2的tweet中情感为正的个数:"+str(numberauthorpositiveeg2)+"\n")
+    authorSenConsiswriter.write("度大于2的tweet中情感为中的个数:"+str(numberauthorneutraleg2)+"\n")
+    authorSenConsiswriter.write("度大于2的tweet中情感为负的个数:"+str(numberauthornegativeeg2)+"\n")
+    authorSenConsiswriter.flush()
+    authorSenConsiswriter.close()
     print u"方差:"
     print allmean
     print u"不同作者数："
