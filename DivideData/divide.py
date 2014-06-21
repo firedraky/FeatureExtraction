@@ -2,10 +2,12 @@
 # author : lifuxin1125@gmail.com
 # date: 2014-06-20
 # version: 0.1
-# 读取数据，通过tab键分割得到tweetId;pub.date.GMT;content;author.name
-# 输出数据：分割后的内容文件，同时根据rating得到sentiment
-# author.nickname;rating =>sentiment
 
+'''
+    # 读取数据，通过tab键分割得到tweetId;pub.date.GMT;content;author.name
+    # 输出数据：分割后的内容文件，同时根据rating得到sentiment
+    # author.nickname;rating =>sentiment
+'''
 
 import time
 def write2tweetid(tweetid):
@@ -58,10 +60,11 @@ def countadd(ratings):
         sentiment[1]=sentiment[1]+1
     elif ratings=="3" or ratings=="4":
         sentiment[2]=sentiment[2]+1
-#   negative,positive,netural
 
 
-#   定义一个字典映射： position 到 函数的一个映射
+'''
+   定义一个字典映射： position 到 函数的一个映射
+'''
 positionAction = {
     "1":write2tweetid,
     "2":write2pubdate,
@@ -77,7 +80,9 @@ positionAction = {
     "12":countadd,
     "13":countadd
 }
-# 定义一个label Map映射，情感label字符串到数字label的映射
+'''
+    定义一个label Map映射，情感label字符串到数字label的映射
+'''
 labelMap = {
     "positive":"1",
     "neutral":"0",

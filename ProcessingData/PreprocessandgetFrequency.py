@@ -108,8 +108,7 @@ if __name__ == "__main__":
     topicwordfreqwriter.close()
     topicwordwriter.flush()
     topicwordwriter.close()
-    #for key,value in wordfredic.iteritems():
-     #   print key,value
+
 
 
 
