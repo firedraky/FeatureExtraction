@@ -197,7 +197,7 @@ FeatureExtraction
 6. 从混合话题数据中抽取出初始训练数据。选择正、中、负 1:1:1 的初始训练数据
     allTweetsPreprocess/RandomSamplingData.py : 蓄水池方法
 
-7. 生成arff的前缀g
+7. 生成arff的前缀
     allTweetsPreprocess/generateAttPrefix.py
 
 8. 数据格式转换为spark mllib的格式
@@ -208,5 +208,18 @@ FeatureExtraction
         neutral:1
         negative:2
         unknown:3
+
+    属性：
+    20000 表情符号
+    20001 否定词个数
+    20002 年份
+    20003 月份
+    20004 日期
+    20005 小时
+    20006 分钟
+    20007 父节点
+    20008 子节点
+    20009 话题
+    20010 标记
 
 7. 情感分类 AdaptiveCotrain
