@@ -86,55 +86,64 @@ labelMap = {
 }
 global sentiment
 if __name__ == "__main__":
-    # 输入
-    # inputdatafile = "../all_asc_tweetsOutput/filterData/EmocCloseData"
-    inputdatafile = "../all_asc_tweetsOutput/filterData/topicData/superbowl"
-    # 输出
-    outputdir = "../all_asc_tweetsOutput/superbowl/"
-    try:
-        global tweetsFileReader,tweetidFileWriter,pubdatefilewriter,yearfilewriter
-        global monthfilewriter,dayfilewriter,hourfilewriter,minfilewriter
-        global contentFileWriter,authornameFileWriter
-        global labelFileWriter,tmpFileWriter,weekdayFileWriter,sentimentFileWriter
+    topicnameSet = {"DamnItsTrue","BieberD3D","Egypt","Ff",
+                    "MentionKe","NEVERSAYNEVERD3D",
+                    "TeamFollowBack","Twitition",
+                    "cumanNANYA","fb","februarywish",
+                    "icantdateyou","improudtosay",
+                    "jfb","nowplaying","nw",
+                    "pickone","purpleglasses","shoutout","superbowl"}
+    for topicname in topicnameSet:
+        print topicname
+        # 输入
+        # inputdatafile = "../all_asc_tweetsOutput/filterData/EmocCloseData"
+        inputdatafile = "../all_asc_tweetsOutput/filterData/topicData/"+topicname
+        # 输出
+        outputdir = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Divided/"
+        try:
+            global tweetsFileReader,tweetidFileWriter,pubdatefilewriter,yearfilewriter
+            global monthfilewriter,dayfilewriter,hourfilewriter,minfilewriter
+            global contentFileWriter,authornameFileWriter
+            global labelFileWriter,tmpFileWriter,weekdayFileWriter,sentimentFileWriter
 
-        tweetsFileReader = open(inputdatafile,'r')
-        tweetidFileWriter=open(outputdir+'tweet.id','w')
-        pubdatefilewriter = open(outputdir+'pub.date.GMT','w')
-        yearfilewriter = open(outputdir+'year','w')
-        monthfilewriter = open(outputdir+'month','w')
-        dayfilewriter = open(outputdir+'day','w')
-        hourfilewriter = open(outputdir+'hour','w')
-        minfilewriter = open(outputdir+'min','w')
-        contentFileWriter = open(outputdir+'content','w')
-        authornameFileWriter = open(outputdir+'author.name','w')
-        labelFileWriter = open(outputdir+'label','w')
-        tmpFileWriter = open(outputdir+'tmp','w')
-        weekdayFileWriter = open(outputdir+'weekday','w')
-        sentimentFileWriter = open(outputdir + 'sentiment','w')
+            tweetsFileReader = open(inputdatafile,'r')
+            tweetidFileWriter=open(outputdir+'tweet.id','w')
+            pubdatefilewriter = open(outputdir+'pub.date.GMT','w')
+            yearfilewriter = open(outputdir+'year','w')
+            monthfilewriter = open(outputdir+'month','w')
+            dayfilewriter = open(outputdir+'day','w')
+            hourfilewriter = open(outputdir+'hour','w')
+            minfilewriter = open(outputdir+'min','w')
+            contentFileWriter = open(outputdir+'content','w')
+            authornameFileWriter = open(outputdir+'author.name','w')
+            labelFileWriter = open(outputdir+'label','w')
+            tmpFileWriter = open(outputdir+'tmp','w')
+            weekdayFileWriter = open(outputdir+'weekday','w')
+            sentimentFileWriter = open(outputdir + 'sentiment','w')
 
-    except IOError,e:
-        print ("读取源数据出现错误",e)
-    else:
-        for readLine in tweetsFileReader:
-            readLineArray = readLine.split("\t")
-            position=1
-            # negative positive neutral
-            for segment in readLineArray:
-                positionAction.get(str(position))(segment)
-                position = position+1
+        except IOError,e:
+            print ("读取源数据出现错误",e)
+        else:
+            for readLine in tweetsFileReader:
+                readLineArray = readLine.split("\t")
+                position=1
+                # negative positive neutral
+                for segment in readLineArray:
+                    positionAction.get(str(position))(segment)
+                    position = position+1
 
 
-        tweetsFileReader.close()
-        tweetidFileWriter.flush(),tweetidFileWriter.close()
-        pubdatefilewriter.flush(),pubdatefilewriter.close()
-        contentFileWriter.flush(),contentFileWriter.close()
-        authornameFileWriter.flush(),authornameFileWriter.close()
-        yearfilewriter.flush(),yearfilewriter.close()
-        monthfilewriter.flush(),monthfilewriter.close()
-        dayfilewriter.flush(),dayfilewriter.close()
-        hourfilewriter.flush(),hourfilewriter.close()
-        minfilewriter.flush(),minfilewriter.close()
-        labelFileWriter.flush(),labelFileWriter.close()
-        tmpFileWriter.flush(),tmpFileWriter.close()
-        weekdayFileWriter.flush(),weekdayFileWriter.close()
-        sentimentFileWriter.flush(),sentimentFileWriter.close()
+            tweetsFileReader.close()
+            tweetidFileWriter.flush(),tweetidFileWriter.close()
+            pubdatefilewriter.flush(),pubdatefilewriter.close()
+            contentFileWriter.flush(),contentFileWriter.close()
+            authornameFileWriter.flush(),authornameFileWriter.close()
+            yearfilewriter.flush(),yearfilewriter.close()
+            monthfilewriter.flush(),monthfilewriter.close()
+            dayfilewriter.flush(),dayfilewriter.close()
+            hourfilewriter.flush(),hourfilewriter.close()
+            minfilewriter.flush(),minfilewriter.close()
+            labelFileWriter.flush(),labelFileWriter.close()
+            tmpFileWriter.flush(),tmpFileWriter.close()
+            weekdayFileWriter.flush(),weekdayFileWriter.close()
+            sentimentFileWriter.flush(),sentimentFileWriter.close()

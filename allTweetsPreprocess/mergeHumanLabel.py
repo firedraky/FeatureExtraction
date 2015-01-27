@@ -7,20 +7,27 @@ __author__ = 'lifuxin'
     合并人工标注的数据HumanLabel/humanLabel500 和 通过表情符号标注的数据HumanLabel/EmocCloseDataLabel
 '''
 
+labelMap = {
+    "positive":"1",
+    "neutral":"0",
+    "negative":"-1",
+    "unknown":"2"
+}
 if __name__ == "__main__":
     # input
     emocLabelDataFile = "../all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel"
     humanLabelDataFile = "../all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500"
     humanLabelNumberFile = "../all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber"
     #   output
+    mergeSentimentFile = "../all_asc_tweetsOutput/filterData/HumanLabel/mergedSentiment"
     mergeLabelFile = "../all_asc_tweetsOutput/filterData/HumanLabel/mergedLabel"
     try:
         emocLabelReader = open(emocLabelDataFile,'r')
         humanLabelReader = open(humanLabelDataFile,'r')
         humanLabelNumberReader = open(humanLabelNumberFile,'r')
 
+        mergeSentimentWriter=open(mergeSentimentFile,'w')
         mergeLabelWriter=open(mergeLabelFile,'w')
-
 
     except IOError,e:
         print ("读取源数据出现错误",e)
@@ -34,13 +41,17 @@ if __name__ == "__main__":
 
             if int(number) == tweetId:
                 print number
-                mergeLabelWriter.write(str(humanLabel)+"\n")
+                mergeSentimentWriter.write(str(humanLabel)+"\n")
+                mergeLabelWriter.write(str(labelMap[str(humanLabel)])+"\n")
+
                 humanLabel =  humanLabelReader.readline().strip("\n")
                 number = humanLabelNumberReader.readline().strip("\n")
                 if not humanLabel :
                     number = -1
             else:
-                mergeLabelWriter.write(str(emocLabel)+"\n")
+                mergeSentimentWriter.write(str(emocLabel)+"\n")
+                mergeLabelWriter.write(str(labelMap[str(emocLabel)])+"\n")
+
             tweetId = tweetId+1
 
 
@@ -48,6 +59,8 @@ if __name__ == "__main__":
         humanLabelReader.close()
         humanLabelNumberReader.close()
 
+        mergeSentimentWriter.flush(),mergeSentimentWriter.close()
         mergeLabelWriter.flush(),mergeLabelWriter.close()
+
 
 

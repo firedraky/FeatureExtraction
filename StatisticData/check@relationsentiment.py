@@ -15,10 +15,10 @@ maxTweetNo=90000000
 
 if __name__ == "__main__":
     # 输入：
-    sentimentfilename  = "../Output/sentiment"
-    tweetrelationfilename = "../Output/tweetrelation"
+    sentimentfilename  = "../all_asc_tweetsOutput/sentiment"
+    tweetrelationfilename = "../all_asc_tweetsOutput/Preprocess/tweetrelation"
     # 输出：
-    statisticfilename = "../StatisticResult/RelationDirectMutualStat"
+    statisticfilename = "../all_asc_tweetsOutput/Preprocess/RelationDirectMutualStat"
     statisticfilewriter = open(statisticfilename,'w')
 
     tweetNo2sentiment={} # tweetNo到每条tweet的情感标记的映射

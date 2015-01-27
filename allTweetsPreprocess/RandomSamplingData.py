@@ -13,15 +13,24 @@ import random
 if __name__ == "__main__":
     # 输入：FeatureMatrixWithNPWRelation 带有话题相关情感词和relation 并且话题相关情感词设置为0
     featureFile = "../all_asc_tweetsOutput/mixedTopic/Feature/FeatureMatrixWithNPWRelation"
+    # precontentFile = "../all_asc_tweetsOutput/superbowl/Preprocess/precontent"
+    # content是用于后续的词频统计
+    precontentFile = "../all_asc_tweetsOutput/mixedTopic/Divided/content"
+
     numSampleData = 100
 
     # 输出：
     initialTrainFile = "../all_asc_tweetsOutput/mixedTopic/DataSet/trainFile"
     mixTopicTestFile = "../all_asc_tweetsOutput/mixedTopic/DataSet/testFile"
+    trainprecontentFile = "../all_asc_tweetsOutput/mixedTopic/DataSet/trainPrecontent"
+    testprecontentFile = "../all_asc_tweetsOutput/mixedTopic/DataSet/testPrecontent"
 
     featureReader = open(featureFile,"r")
+    precontenReader = open(precontentFile,"r")
     initialTrainWriter = open(initialTrainFile,"w")
     mixTopicTestWriter = open(mixTopicTestFile,"w")
+    trainprecontentWriter = open(trainprecontentFile,"w")
+    testprecontentWriter = open(testprecontentFile,"w")
 
     tweetId = 1
 
@@ -101,8 +110,10 @@ if __name__ == "__main__":
     featureReader = open(featureFile,"r")
     for featureVector in featureReader:
         featureVector = featureVector.strip("\n")
+        precontentstr = precontenReader.readline().strip("\n")
         if tweetId == selectedTweetId:
             initialTrainWriter.write(str(featureVector)+"\n")
+            trainprecontentWriter.write(precontentstr+"\n")
             seletedId = seletedId + 1
             if seletedId < len(selectedTweetIdList):
                 selectedTweetId = selectedTweetIdList[seletedId][1]
@@ -110,7 +121,12 @@ if __name__ == "__main__":
                 selectedTweetId = -1
         else:
             mixTopicTestWriter.write(str(featureVector)+"\n")
+            testprecontentWriter.write(precontentstr+"\n")
         tweetId = tweetId +1
 
+    featureReader.close()
+    precontenReader.close()
     initialTrainWriter.flush(),initialTrainWriter.close()
     mixTopicTestWriter.flush(),mixTopicTestWriter.close()
+    trainprecontentWriter.flush(),trainprecontentWriter.close()
+    testprecontentWriter.flush(),testprecontentWriter.close()

@@ -10,22 +10,22 @@
 '''
 if __name__ == "__main__":
     # 输入：
-    precontentfilename = "../Output/precontent"
-    sentimentfilename = "../Output/sentiment"
-    yearfilename = "../Output/year"
-    monthfilename = "../Output/month"
-    dayfilename = "../Output/day"
-    hourfilename = "../Output/hour"
-    minfilename = "../Output/min"
+    precontentfilename = "../all_asc_tweetsOutput/Preprocess/precontent"
+    sentimentfilename = "../all_asc_tweetsOutput/sentiment"
+    yearfilename = "../all_asc_tweetsOutput/year"
+    monthfilename = "../all_asc_tweetsOutput/month"
+    dayfilename = "../all_asc_tweetsOutput/day"
+    hourfilename = "../all_asc_tweetsOutput/hour"
+    minfilename = "../all_asc_tweetsOutput/min"
     publicwordPMIfilename = "../Dictionary/publicwordPMI"
-    nonpublicwordpmifilename = "../Feature/nonpublicwordfreqge2"
-    relationattributefilename = "../Feature/RelationAtt"
+    nonpublicwordpmifilename = "../all_asc_tweetsOutput/Feature/nonpublicwordfreqge2"
+    relationattributefilename = "../all_asc_tweetsOutput/Feature/RelationAtt"
 
     # 输出：
-    FMatrixWithNPWfilename = "../Feature/FeatureMatrixWithNPW"
-    FMatrixWithNPWsetZerofilename = "../Feature/FeatureMatrixWithNPWsetZero"
-    FMatrixWithoutNPWfilename = "../Feature/FeatureMatrixWithoutNPW"
-    FMatrixWithNPWsetzeroRelationfilename = "../Feature/FeatureMatrixWithNPWRelation"
+    FMatrixWithNPWfilename = "../all_asc_tweetsOutput/Feature/FeatureMatrixWithNPW"
+    FMatrixWithNPWsetZerofilename = "../all_asc_tweetsOutput/Feature/FeatureMatrixWithNPWsetZero"
+    FMatrixWithoutNPWfilename = "../all_asc_tweetsOutput/Feature/FeatureMatrixWithoutNPW"
+    FMatrixWithNPWsetzeroRelationfilename = "../all_asc_tweetsOutput/Feature/FeatureMatrixWithNPWRelation"
 
     arffwithNPWriter = open(FMatrixWithNPWfilename,"w")
     arffwithNPsetzeroWriter = open(FMatrixWithNPWsetZerofilename,"w")

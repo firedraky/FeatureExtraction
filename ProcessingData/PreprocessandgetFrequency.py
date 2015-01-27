@@ -30,84 +30,93 @@ replacedic={"i'm":"i am","it's":"it is",
 
 
 if __name__ == "__main__":
-    # 输入文件名称：
-    contentfile = "../Output/content"
-    # 输出文件名称：
-    precontentfile = "../Output/precontent"
-    topicwordfrequencyfile = "../Output/topicwordfrequency"
-    topicwordfile = "../Output/topicword"
+    topicnameSet = {"DamnItsTrue","BieberD3D","Egypt","Ff",
+                    "MentionKe","NEVERSAYNEVERD3D",
+                    "TeamFollowBack","Twitition",
+                    "cumanNANYA","fb","februarywish",
+                    "icantdateyou","improudtosay",
+                    "jfb","nowplaying","nw",
+                    "pickone","purpleglasses","shoutout"}
+    for topicname in topicnameSet:
+        print topicname
+        # 输入文件名称：
+        contentfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Divided/content"
+        # 输出文件名称：
+        precontentfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Preprocess/precontent"
+        topicwordfrequencyfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Preprocess/topicwordfrequency"
+        topicwordfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Preprocess/topicword"
 
-    topicwordfreqwriter=open(topicwordfrequencyfile,'w')
-    topicwordwriter = open(topicwordfile,"w")
-    processedtweetwriter=open(precontentfile,'w')
+        topicwordfreqwriter=open(topicwordfrequencyfile,'w')
+        topicwordwriter = open(topicwordfile,"w")
+        processedtweetwriter=open(precontentfile,'w')
 
-    wordfredic={}
-    with open(contentfile,'r') as tweetreader:
-        for tweetcontent in tweetreader:
-            tweetcontent=tweetcontent.strip()
+        wordfredic={}
+        with open(contentfile,'r') as tweetreader:
+            for tweetcontent in tweetreader:
+                tweetcontent=tweetcontent.strip()
 
-            wordarray = tweetcontent.split(" ")
-            for word in wordarray:
-                # 过滤掉开头为#号，@，或者http://开头的单词
-                word=word.strip().lower();
-                if word.startswith('#') or word.startswith('@') or word.startswith('http://') or word.isspace():
-                    continue
-                # 开头是+，或者-
-                if word.startswith("+"):
-                    processedtweetwriter.write("POSADD"+" ")
-                    continue
-                elif word.startswith("-"):
-                    processedtweetwriter.write("NEGMIS"+" ")
-                    continue
+                wordarray = tweetcontent.split(" ")
+                for word in wordarray:
+                    # 过滤掉开头为#号，@，或者http://开头的单词
+                    word=word.strip().lower();
+                    if word.startswith('#') or word.startswith('@') or word.startswith('http://') or word.isspace():
+                        continue
+                    # 开头是+，或者-
+                    if word.startswith("+"):
+                        processedtweetwriter.write("POSADD"+" ")
+                        continue
+                    elif word.startswith("-"):
+                        processedtweetwriter.write("NEGMIS"+" ")
+                        continue
 
-                # 否定词个数
-                # for negword in negwords:
-                if word in negwords:
-                    processedtweetwriter.write("NEGWORD"+" ")
-                    continue
+                    # 否定词个数
+                    # for negword in negwords:
+                    if word in negwords:
+                        processedtweetwriter.write("NEGWORD"+" ")
+                        continue
 
-                # 缩写词
-                if replacedic.has_key(word):
-                    word=replacedic[word]
+                    # 缩写词
+                    if replacedic.has_key(word):
+                        word=replacedic[word]
+                        processedtweetwriter.write(word+" ")
+                        continue
+
+                    for punc in puncarray:
+                        word=word.replace(punc,'')
+
+                    # 是正负表情符号
+                    if word in positivemo:
+                        processedtweetwriter.write("POSEMOC"+" ")
+                        continue
+                    elif word in negativemo:
+                        processedtweetwriter.write("NEGEMOC"+" ")
+                        continue
+
+
+
                     processedtweetwriter.write(word+" ")
-                    continue
-
-                for punc in puncarray:
-                    word=word.replace(punc,'')
-
-                # 是正负表情符号
-                if word in positivemo:
-                    processedtweetwriter.write("POSEMOC"+" ")
-                    continue
-                elif word in negativemo:
-                    processedtweetwriter.write("NEGEMOC"+" ")
-                    continue
 
 
 
-                processedtweetwriter.write(word+" ")
+                    if wordfredic.has_key(word):
+                        wordfredic[word]=wordfredic[word]+1
+                    else:
+                        wordfredic[word]=1
+                processedtweetwriter.write("\n")
+        tweetreader.close()
+        processedtweetwriter.flush()
+        processedtweetwriter.close()
+        # 词典
+        worddiclist=sorted(wordfredic.items(),lambda x,y:cmp(x[1],y[1]),reverse=True)
 
+        for key,value in worddiclist:
+            topicwordfreqwriter.write(str(key)+"\t"+str(value)+"\n")
+            topicwordwriter.write(str(key)+"\n")
 
-
-                if wordfredic.has_key(word):
-                    wordfredic[word]=wordfredic[word]+1
-                else:
-                    wordfredic[word]=1
-            processedtweetwriter.write("\n")
-    tweetreader.close()
-    processedtweetwriter.flush()
-    processedtweetwriter.close()
-    # 词典
-    worddiclist=sorted(wordfredic.items(),lambda x,y:cmp(x[1],y[1]),reverse=True)
-
-    for key,value in worddiclist:
-        topicwordfreqwriter.write(str(key)+"\t"+str(value)+"\n")
-        topicwordwriter.write(str(key)+"\n")
-
-    topicwordfreqwriter.flush()
-    topicwordfreqwriter.close()
-    topicwordwriter.flush()
-    topicwordwriter.close()
+        topicwordfreqwriter.flush()
+        topicwordfreqwriter.close()
+        topicwordwriter.flush()
+        topicwordwriter.close()
 
 
 

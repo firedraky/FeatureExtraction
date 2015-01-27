@@ -11,8 +11,8 @@
 
 import time
 def write2tweetid(tweetid):
-    tweetidfilewriter.write(str(tweetid))
-    tweetidfilewriter.write("\n")
+    tweetidFileWriter.write(str(tweetid))
+    tweetidFileWriter.write("\n")
 
 def write2pubdate(pubdate):
     pubdatetime=time.strptime(pubdate,"%m/%d/%y %H:%M")
@@ -37,12 +37,12 @@ def write2pubdate(pubdate):
 
 def write2content(content):
     #contentfilewriter.write(str(content).lower())
-    contentfilewriter.write(str(content))
-    contentfilewriter.write("\n")
+    contentFileWriter.write(str(content))
+    contentFileWriter.write("\n")
 
 def write2authorname(authorname):
-    authornamefilewriter.write(str(authorname))
-    authornamefilewriter.write("\n")
+    authornameFileWriter.write(str(authorname))
+    authornameFileWriter.write("\n")
 
 def write2authornickname(authornickname):
     authornicknamewriter.write(str(authornickname))
@@ -93,28 +93,28 @@ if __name__ == "__main__":
     inputdatafile = "../input/sorteddata"
     outputdir = "../Output/"
     try:
-        global tweetsfilereader,tweetidfilewriter,pubdatefilewriter,yearfilewriter
+        global tweetsFileReader,tweetidFileWriter,pubdatefilewriter,yearfilewriter
         global monthfilewriter,dayfilewriter,hourfilewriter,minfilewriter
-        global contentfilewriter,authornamefilewriter,authornicknamewriter
-        global ratingswriter,labelfilewriter
-        tweetsfilereader = open(inputdatafile,'r')
-        tweetidfilewriter=open(outputdir+'tweet.id','w')
+        global contentFileWriter,authornameFileWriter,authornicknamewriter
+        global ratingswriter,labelFileWriter
+        tweetsFileReader = open(inputdatafile,'r')
+        tweetidFileWriter=open(outputdir+'tweet.id','w')
         pubdatefilewriter = open(outputdir+'pub.date.GMT','w')
         yearfilewriter = open(outputdir+'year','w')
         monthfilewriter = open(outputdir+'month','w')
         dayfilewriter = open(outputdir+'day','w')
         hourfilewriter = open(outputdir+'hour','w')
         minfilewriter = open(outputdir+'min','w')
-        contentfilewriter = open(outputdir+'content','w')
-        authornamefilewriter = open(outputdir+'author.name','w')
+        contentFileWriter = open(outputdir+'content','w')
+        authornameFileWriter = open(outputdir+'author.name','w')
         authornicknamewriter = open(outputdir+'author.nickname','w')
         ratingswriter = open(outputdir+'sentiment','w')
-        labelfilewriter = open(outputdir+'label','w')
+        labelFileWriter = open(outputdir+'label','w')
     except IOError,e:
         print ("读取源数据出现错误",e)
     else:
         tweetNo = 1
-        for tweetstructure in tweetsfilereader:
+        for tweetstructure in tweetsFileReader:
             tweets = tweetstructure.split("\t")
             position=1
             # negative positive netural
@@ -134,15 +134,15 @@ if __name__ == "__main__":
             ratingswriter.write(str(label))
             ratingswriter.write("\n")
 
-            labelfilewriter.write(labelMap[str(label)]+"\n")
+            labelFileWriter.write(labelMap[str(label)]+"\n")
             tweetNo=tweetNo+1
 
 
-        tweetsfilereader.close()
-        tweetidfilewriter.flush(),tweetidfilewriter.close()
+        tweetsFileReader.close()
+        tweetidFileWriter.flush(),tweetidFileWriter.close()
         pubdatefilewriter.flush(),pubdatefilewriter.close()
-        contentfilewriter.flush(),contentfilewriter.close()
-        authornamefilewriter.flush(),authornamefilewriter.close()
+        contentFileWriter.flush(),contentFileWriter.close()
+        authornameFileWriter.flush(),authornameFileWriter.close()
         authornicknamewriter.flush(),authornicknamewriter.close()
         ratingswriter.flush(),ratingswriter.close()
         yearfilewriter.flush(),yearfilewriter.close()
@@ -150,5 +150,5 @@ if __name__ == "__main__":
         dayfilewriter.flush(),dayfilewriter.close()
         hourfilewriter.flush(),hourfilewriter.close()
         minfilewriter.flush(),minfilewriter.close()
-        labelfilewriter.flush(),labelfilewriter.close()
+        labelFileWriter.flush(),labelFileWriter.close()
     

@@ -126,6 +126,38 @@ FeatureExtraction
 #   封闭的带表情符号数据集合，数量是 1915200
 #        all_asc_tweetsOutput/filterData/EmocCloseData
 ###################################################################
+FilterData
+    fitlerData.py 根据需求过滤数据
+    得到带表情符号的数据，以及通过带表情符号得到封闭数据集
+    输出：all_asc_tweetsOutput/filterEmocData 含有表情符号的数据集 1208266条tweets
+         all_asc_tweetsOutput/EmocCloseData 封闭数据集  1915200条tweets
+
+#####################################################################
+HashTag 筛选话题
+allTweetsPreprocess/statHashTag.py
+    输出：all_asc_tweetsOutput/HashTagStat HashTag统计信息
+手工过滤，筛选20个话题 topicData/
+    BieberD3D	857
+    DamnItsTrue	608
+    Egypt	2148
+    MentionKe	3749
+    NEVERSAYNEVER3D	896
+    TeamFollowBack	1495
+    Twitition	1467
+    cumanNANYA	1425
+    fb	820
+    februarywish	739
+    Ff	5231
+    icantdateyou	667
+    improudtosay	563
+    jfb	1560
+    nowplaying	5888
+    nw	669
+    pickone	643
+    shoutout	2933
+    Superbowl	2344
+    purpleglasses 744
+##################################################################
 1. 人工标注数据
     humanLabel.py: 将EmocCloseData中带表情符号的数据进行正／负标注，然后输出需要人工标注的数据
         输入：   封闭的数据集：all_asc_tweetsOutput/filterData/EmocCloseData
@@ -184,18 +216,27 @@ FeatureExtraction
     FeatureProcess
         getRelationAtt.py : 根据tweetrelation得到relation feature （parent，child）
 
-    allTweetsPreprocess/selectTopicWord.py:
+    ### allTweetsPreprocess/selectTopicWord.py:
 
-4. 得到混合数据的特征矩阵
-    FeatureProcess
-        MergeToGetFM.py ：根据各个特征，得到不同的特征矩阵
+4 Opinion word and target word extraction
+    输入： public word set, publicwordPMI 和 content,author.name
+    使用Java程序得到dependency relation，Opinion word set 和 target word set
+
+4.2 合并所有话题下的topicword
+    allTweetsPreprocess/mergeTopicword.py :
+    输出：all_asc_tweetsOutput/SpecialDomain/alltopicword
 
 5. 得到某个话题领域的特征矩阵
-    FeatureProcess
+    allTweetsPreprocess
+        训练数据，测试数据
         MergeToGetFM.py ：根据各个特征，得到不同的特征矩阵
+        输出：主要FeatureMatrixWithNPWRelation
+
 
 6. 从混合话题数据中抽取出初始训练数据。选择正、中、负 1:1:1 的初始训练数据
+    训练数据
     allTweetsPreprocess/RandomSamplingData.py : 蓄水池方法
+    输出除了训练数据和测试数据的特征向量，还包含precontent
 
 7. 生成arff的前缀
     allTweetsPreprocess/generateAttPrefix.py
@@ -221,5 +262,11 @@ FeatureExtraction
     20008 子节点
     20009 话题
     20010 标记
+8. 计算topic word在每个tweet中出现的次数
+    训练数据，测试数据，跑两次
+    getTopicWordFreq.py 输出格式： topicwordNo tweetId:freq tweetId:freq ...
+    getTweetWordStat.py 输出格式： tweetId wordNo:freq wordNo:freq ...
 
+8.2 将处理好的数据move到AdaptiveCotrain工程目录下
+    allTweetsPreprocess/moveData.bash
 7. 情感分类 AdaptiveCotrain

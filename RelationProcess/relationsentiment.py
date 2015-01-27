@@ -12,35 +12,45 @@
 import string
 
 if __name__ == "__main__":
-    # 输入：
-    sentimentfile = "../Output/sentiment"
-    tweetrelationfile = "../Output/tweetrelation"
-    # 输出
-    relationsentimentfile = "../Output/relationsentiment"
+    topicnameSet = {"DamnItsTrue","BieberD3D","Egypt","Ff",
+                    "MentionKe","NEVERSAYNEVERD3D",
+                    "TeamFollowBack","Twitition",
+                    "cumanNANYA","fb","februarywish",
+                    "icantdateyou","improudtosay",
+                    "jfb","nowplaying","nw",
+                    "pickone","purpleglasses","shoutout"}
+    for topicname in topicnameSet:
+        print topicname
+        # 输入：
+        # sentimentfile = "../all_asc_tweetsOutput/filterData/HumanLabel/mergedSentiment"
+        sentimentfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Divided/sentiment"
+        tweetrelationfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Preprocess/tweetrelation"
+        # 输出
+        relationsentimentfile = "../all_asc_tweetsOutput/SpecialDomain/"+topicname+"/Preprocess/relationsentiment"
 
-    tweetidSentiment={}
+        tweetidSentiment={}
 
-    tweetNo = 1
-    with open(sentimentfile,"r") as sentimentreader:
-        for sentiment in sentimentreader:
-            sentiment = sentiment.strip()
-            tweetidSentiment[tweetNo] = sentiment
-            tweetNo = tweetNo +1
+        tweetNo = 1
+        with open(sentimentfile,"r") as sentimentreader:
+            for sentiment in sentimentreader:
+                sentiment = sentiment.strip()
+                tweetidSentiment[tweetNo] = sentiment
+                tweetNo = tweetNo +1
 
-    sentimentreader.close()
-    relationsentimentwriter = open(relationsentimentfile,"w")
-    tweetNo = 1
-    with open(tweetrelationfile,"r") as tweetRealtionreader:
-        for relationships in tweetRealtionreader:
-            relationships = relationships.strip()
-            relationshipvec = relationships.split(' ')
-            relationsentimentwriter.write(tweetidSentiment[tweetNo]+':\t')
-            for relation in relationshipvec:
-                if relation =='':
-                    continue
-                relationsentimentwriter.write(tweetidSentiment[int(relation)]+'\t')
-            relationsentimentwriter.write('\n')
-            tweetNo=tweetNo+1
-    relationsentimentwriter.flush()
-    relationsentimentwriter.close()
-    tweetRealtionreader.close()
+        sentimentreader.close()
+        relationsentimentwriter = open(relationsentimentfile,"w")
+        tweetNo = 1
+        with open(tweetrelationfile,"r") as tweetRealtionreader:
+            for relationships in tweetRealtionreader:
+                relationships = relationships.strip()
+                relationshipvec = relationships.split(' ')
+                relationsentimentwriter.write(tweetidSentiment[tweetNo]+':\t')
+                for relation in relationshipvec:
+                    if relation =='':
+                        continue
+                    relationsentimentwriter.write(tweetidSentiment[int(relation)]+'\t')
+                relationsentimentwriter.write('\n')
+                tweetNo=tweetNo+1
+        relationsentimentwriter.flush()
+        relationsentimentwriter.close()
+        tweetRealtionreader.close()

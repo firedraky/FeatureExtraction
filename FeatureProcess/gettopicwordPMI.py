@@ -11,13 +11,13 @@
 if __name__  == "__main__":
     # 输入：
     publicwordpmifilename = "../Dictionary/publicwordPMI"
-    topicwordfreqfilename = "../Output/topicwordfrequency"
+    topicwordfreqfilename = "../all_asc_tweetsOutput/Preprocess/topicwordfrequency"
     topicwordpmifilename = "../Input/topicwordPMI"
 
     # 输出：
-    nonpublicwordpmifilename = "../Feature/nonpublicwordPMI"
-    nonpublicwordfreqge2filename = "../Feature/nonpublicwordfreqge2"
-    removedpublicwordfilename = "../Feature/removednonpublicword"
+    nonpublicwordpmifilename = "../all_asc_tweetsOutput/Feature/nonpublicwordPMI"
+    nonpublicwordfreqge2filename = "../all_asc_tweetsOutput/Feature/nonpublicwordfreqge2"
+    removedpublicwordfilename = "../all_asc_tweetsOutput/Feature/removednonpublicword"
 
     publicwordDic={}
     nonpublicwordDic={}

@@ -30,10 +30,10 @@ def sortfilebyauthorname(authorfilename,sentimentfile):
 
 if __name__ == "__main__":
     # 输入：
-    authornamefile = "../Output/author.name"
-    sentimentfile = "../Output/label"
+    authornamefile = "../all_asc_tweetsOutput/author.name"
+    sentimentfile = "../all_asc_tweetsOutput/label"
     # 输出：
-    ConsistentResultfile = "../StatisticResult/SentimentConsistent"
+    ConsistentResultfile = "../all_asc_tweetsOutput/Preprocess/SentimentConsistent"
     authorSenConsiswriter = open(ConsistentResultfile,'w')
     listauthornamesentiment = sortfilebyauthorname(authornamefile,sentimentfile)
 
