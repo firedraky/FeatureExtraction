@@ -1,10 +1,31 @@
 FeatureExtraction
-=================
+===================
 
-从tweet数据中提取文本特征以及非文本特征
+该文件描述了从tweet数据中提取文本特征以及非文本特征的基本流程
 
+##目录结构：
 
-一、目录结构：
+>Dictionary
+>>hownet
+>>hownetPMI
+>>wordnet
+>>wordnetPMI
+>>publicwordPMI
+>>WORDPMI
+>>mergeWordnetandhownet.py
+>input
+>>sorteddata
+>>topicwordPMI
+>output
+>Divide
+>>divide.py
+>ProcessingData
+>>PreprocessandgetFrequency.py
+>SentimentDiffusion
+>>checkposrelation.py
+>RelationProcess
+>>relationsentiment.py
+
 
 -Dictionary
 	-hownet
@@ -270,3 +291,17 @@ allTweetsPreprocess/statHashTag.py
 8.2 将处理好的数据move到AdaptiveCotrain工程目录下
     allTweetsPreprocess/moveData.bash
 7. 情感分类 AdaptiveCotrain
+
+8. 使用 StanfordParser／GenerateTuples生成三元组
+    通过moveTASC2Tuple.sh将AdaptiveCotrain生成的各类情感词移到 StanfordParser 目录下
+    使用generateTuples.sh批量生成三元组(话题相关情感词)
+    生成通用话题情感词三元组：generatePublicWordTuples.sh
+
+9. 将不同话题下的不同分类结果的二元组合并到一个文件中
+   mergeTuples.sh  合并二元组 ＝》
+topicname   author     dependentWordString(opinion word) weight
+例子：
+DamnItsTrue     sekarAthaya        my      0.43459480489818014
+
+10.考虑3个变量的组合：author topicdomain   opinionword
+    statistic.sh
