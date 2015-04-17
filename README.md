@@ -8,11 +8,11 @@ FeatureExtraction
 >Dictionary
 >>hownet<br>
 >>hownetPMI<br>
->>wordnet
->>wordnetPMI
->>publicwordPMI
->>WORDPMI
->>mergeWordnetandhownet.py
+>>wordnet<br>
+>>wordnetPMI<br> 
+>>publicwordPMI<br> 
+>>WORDPMI<br> 
+>>mergeWordnetandhownet.py<br> 
 >input
 >>sorteddata
 >>topicwordPMI
