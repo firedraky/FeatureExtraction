@@ -119,7 +119,7 @@ FeatureExtraction
 >>手工过滤，筛选20个话题 all_asc_tweetsOutput/topicData/   <br>
     
     话题名称  | 微博数量    | 话题名称  | 微博数量
-    ------------- | -------------
+    ------------- | -------------   ｜   ------------- | -------------
     BieberD3D	  | 857 | DamnItsTrue	  | 608
     Egypt	  | 2148    |   Superbowl	  | 2344
     MentionKe	  | 3749    |   shoutout	  | 2933
@@ -134,12 +134,13 @@ FeatureExtraction
 ##HashTag 人工标注数据
 >humanLabel.py     <br>
     将EmocCloseData中带表情符号的数据进行正／负标注，然后输出需要人工标注的数据 <br>
-    输入:
+>输入:
 >>封闭的数据集：all_asc_tweetsOutput/filterData/EmocCloseData  <br>
-    输出:
+>输出:
 >>已经按照正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel    <br>
     需要人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelContent  <br>
     需要人工标注的数据的位置，tweetId：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber    <br>
+    
 >进行人工标注数据：   <br>
     输出： 
 >>all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
@@ -154,7 +155,8 @@ FeatureExtraction
 >输出：   
 >>合并的数据标注：all_asc_tweetsOutput/filterData/HumanLabel/mergedLabel    <br>
              合并的数据标注情感：all_asc_tweetsOutput/filterData/HumanLabel/mergedSentiment   <br>
-    统计 mergeLabel中正类／负类的数据量比例   <br>
+    
+>>统计 mergeLabel中正类／负类的数据量比例   <br>
     
         情感倾向  | 微博数量
         ------------- | -------------
@@ -162,7 +164,7 @@ FeatureExtraction
         负类	  | 119763
         标注的中性数据	  | 100
 
-    注意类别标注： <br>
+>>注意类别标注： <br>
     
         类别  | 类别标注
         ------------- | -------------
@@ -170,6 +172,7 @@ FeatureExtraction
         neutral	  | 0
         negative	  | －1
         unknown	  | 2
+    
     
 ## 处理混合数据
 >divide.py     <br>
