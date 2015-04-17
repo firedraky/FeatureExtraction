@@ -136,27 +136,29 @@ FeatureExtraction
 ##HashTag 人工标注数据
 >humanLabel.py     <br>
     将EmocCloseData中带表情符号的数据进行正／负标注，然后输出需要人工标注的数据 <br>
->输入:
->>封闭的数据集：all_asc_tweetsOutput/filterData/EmocCloseData  <br>
->输出:
->>已经按照正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel    <br>
-    需要人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelContent  <br>
-    需要人工标注的数据的位置，tweetId：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber    <br>
+>>输入:
+>>>封闭的数据集：all_asc_tweetsOutput/filterData/EmocCloseData  <br>
+
+>>输出:    <br>
+>>>已经按照正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel    <br>
+>>>需要人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelContent  <br>
+>>>需要人工标注的数据的位置，tweetId：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber    <br>
     
 >进行人工标注数据：   <br>
-    输出： 
->>all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
+>>输出： 
+>>>all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
 
 
 >mergeHumanLabel.py     <br>  	
-    合并人工标注的数据HumanLabel/humanLabel500 和 通过表情符号标注的数据HumanLabel/EmocCloseDataLabel    <br>
->输入：   
->>已正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel   <br>
-            人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
-            人工标注数据对应的位置：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber <br>
->输出：   
->>合并的数据标注：all_asc_tweetsOutput/filterData/HumanLabel/mergedLabel    <br>
-             合并的数据标注情感：all_asc_tweetsOutput/filterData/HumanLabel/mergedSentiment   <br>
+>合并人工标注的数据HumanLabel/humanLabel500 和 通过表情符号标注的数据HumanLabel/EmocCloseDataLabel    <br>
+>>输入：   <br>   
+>>>已正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel   <br>
+>>>人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
+>>>人工标注数据对应的位置：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber <br>
+            
+>>输出：   
+>>>合并的数据标注：all_asc_tweetsOutput/filterData/HumanLabel/mergedLabel    <br>
+>>>合并的数据标注情感：all_asc_tweetsOutput/filterData/HumanLabel/mergedSentiment   <br>
     
 >>统计 mergeLabel中正类／负类的数据量比例   <br>
     
@@ -206,20 +208,20 @@ FeatureExtraction
 
 ##合并所有话题下的目标话题相关情感词
 
->allTweetsPreprocess/mergeTopicword.py :
->输出：
->>all_asc_tweetsOutput/SpecialDomain/alltopicword
+>allTweetsPreprocess/mergeTopicword.py :    <br>
+>>输出：
+>>>all_asc_tweetsOutput/SpecialDomain/alltopicword
 
 ##得到某个话题领域的特征矩阵
 
->allTweetsPreprocess/MergeToGetFM.py
+>allTweetsPreprocess/MergeToGetFM.py    <br>
     根据各个特征，得到不同的特征矩阵
->输出：
->>主要FeatureMatrixWithNPWRelation
+>>输出：
+>>>主要FeatureMatrixWithNPWRelation
 
 
 ##从混合话题数据中抽取出初始训练数据。选择正、中、负 1:1:1 的初始训练数据
-    训练数据
+
 >allTweetsPreprocess/RandomSamplingData.py : 蓄水池方法
 >>输出除了训练数据和测试数据的特征向量，还包含precontent
 
@@ -227,7 +229,7 @@ FeatureExtraction
 >allTweetsPreprocess/generateAttPrefix.py
 
 ##数据格式转换为spark mllib的格式
->allTweetsPreprocess/formatConvert.py:
+>allTweetsPreprocess/formatConvert.py:  <br>
     将weka格式的数据转化为spark mllib数据要求的格式
     对于label和topicname的对应：
     
@@ -239,6 +241,8 @@ FeatureExtraction
         unknown	  | 3
 
     特征集中属性与下标对应关系：
+    
+    
     
     属性下标  | 属性
     ------------- | -------------
@@ -256,10 +260,13 @@ FeatureExtraction
     20008	  | 子节点
     20009	  | 话题
     20010	  | 标记
+    
    
 ##计算topic word在每个tweet中出现的次数(训练数据，测试数据，跑两次)
->getTopicWordFreq.py 输出格式： topicwordNo tweetId:freq tweetId:freq ...
->getTweetWordStat.py 输出格式： tweetId wordNo:freq wordNo:freq ...
+>getTopicWordFreq.py 
+>>输出格式： topicwordNo tweetId:freq tweetId:freq ...
+>getTweetWordStat.py 
+>>输出格式： tweetId wordNo:freq wordNo:freq ...
 
 ##TASC算法，自适应目标话题
 >allTweetsPreprocess/moveData.bash
@@ -267,16 +274,21 @@ FeatureExtraction
 
 
 ##生成三元组
->StanfordParser／GenerateTuples生成三元组(JAVA)
->moveTASC2Tuple.sh
-    将AdaptiveCotrain生成的各类情感词移到 StanfordParser 目录下   <br>
-    使用generateTuples.sh批量生成三元组(话题相关情感词) <br>
-    生成通用话题情感词三元组：generatePublicWordTuples.sh    <br>
+>StanfordParser／GenerateTuples生成三元组(JAVA)   <br>
+>>moveTASC2Tuple.sh <br>
+>>>将AdaptiveCotrain生成的各类情感词移到 StanfordParser 目录下   <br>
+
+>>generateTuples.sh <br>
+>>>使用generateTuples.sh批量生成三元组(话题相关情感词) <br>
+
+>>generatePublicWordTuples.sh   <br>
+>>>生成通用话题情感词三元组：generatePublicWordTuples.sh    <br>
 
 ##三元组处理
     
 >mergeTuples.sh 
->>将不同话题下的不同分类结果的二元组合并到一个文件中
+
+>>将不同话题下的不同分类结果的二元组合并到一个文件中 <br>
 >>topicname   author     dependentWordString(opinion word) weight   <br>
 >>例子：   <br>
 >>DamnItsTrue     sekarAthaya        my      0.43459480489818014    <br>
