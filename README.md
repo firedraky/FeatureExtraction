@@ -109,53 +109,53 @@ FeatureExtraction
 >FilterData/fitlerData.py    <br>
     根据需求过滤数据,得到带表情符号的数据，以及通过带表情符号得到封闭数据集    <br>
     输出： <br>
-    all_asc_tweetsOutput/filterEmocData 含有表情符号的数据集 1208266条tweets   <br>
-    all_asc_tweetsOutput/EmocCloseData 封闭数据集  1915200条tweets    <br>
+>>all_asc_tweetsOutput/filterEmocData 含有表情符号的数据集 1208266条tweets   <br>
+>>all_asc_tweetsOutput/EmocCloseData 封闭数据集  1915200条tweets    <br>
     
 ##HashTag 筛选话题
 >statHashTag.py     <br>
->>输出：all_asc_tweetsOutput/HashTagStat HashTag统计信息 <br>
+    输出：
+>>all_asc_tweetsOutput/HashTagStat HashTag统计信息 <br>
 >>手工过滤，筛选20个话题 all_asc_tweetsOutput/topicData/   <br>
     
-    话题名称  | 微博数量
+    话题名称  | 微博数量    | 话题名称  | 微博数量
     ------------- | -------------
-    BieberD3D	  | 857
-    DamnItsTrue	  | 608
-    Egypt	  | 2148
-    MentionKe	  | 3749
-    NEVERSAYNEVER3D	  | 896
-    TeamFollowBack	  | 1495
-    Twitition	  | 1467
-    cumanNANYA	  | 1425
-    fb	  | 820
-    februarywish	  | 739
-    Ff	  | 5231
-    icantdateyou	  | 667
-    improudtosay	  | 563
-    jfb	  | 1560
-    nowplaying	  | 5888
-    nw	  | 669
-    pickone	  | 643
-    shoutout	  | 2933
-    Superbowl	  | 2344
-    purpleglasses	  | 744
+    BieberD3D	  | 857 | DamnItsTrue	  | 608
+    Egypt	  | 2148    |   Superbowl	  | 2344
+    MentionKe	  | 3749    |   shoutout	  | 2933
+    NEVERSAYNEVER3D	  | 896 |   icantdateyou	  | 667 
+    TeamFollowBack	  | 1495    |   fb	  | 820
+    Twitition	  | 1467    |     februarywish	  | 739
+    cumanNANYA	  | 1425    |  Ff	  | 5231
+    improudtosay	  | 563 |    pickone	  | 643
+    jfb	  | 1560    |   purpleglasses	  | 744
+    nowplaying	  | 5888    |   nw	  | 669
+    
 ##HashTag 人工标注数据
->>humanLabel.py     <br>
+>humanLabel.py     <br>
     将EmocCloseData中带表情符号的数据进行正／负标注，然后输出需要人工标注的数据 <br>
-    输入：   封闭的数据集：all_asc_tweetsOutput/filterData/EmocCloseData  <br>
-    输出：   已经按照正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel    <br>
-            需要人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelContent  <br>
-            需要人工标注的数据的位置，tweetId：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber    <br>
-    进行人工标注数据：   <br>
-        输出： all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
->>mergeHumanLabel.py     <br>  	
+    输入:
+>>封闭的数据集：all_asc_tweetsOutput/filterData/EmocCloseData  <br>
+    输出:
+>>已经按照正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel    <br>
+    需要人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelContent  <br>
+    需要人工标注的数据的位置，tweetId：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber    <br>
+>进行人工标注数据：   <br>
+    输出： 
+>>all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
+
+
+>mergeHumanLabel.py     <br>  	
     合并人工标注的数据HumanLabel/humanLabel500 和 通过表情符号标注的数据HumanLabel/EmocCloseDataLabel    <br>
-    输入：   已正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel   <br>
+>输入：   
+>>已正负标注好的数据：all_asc_tweetsOutput/filterData/HumanLabel/EmocCloseDataLabel   <br>
             人工标注的数据：all_asc_tweetsOutput/filterData/HumanLabel/humanLabel500    <br>
             人工标注数据对应的位置：all_asc_tweetsOutput/filterData/HumanLabel/humanLabelNumber <br>
-    输出：   合并的数据标注：all_asc_tweetsOutput/filterData/HumanLabel/mergedLabel    <br>
+>输出：   
+>>合并的数据标注：all_asc_tweetsOutput/filterData/HumanLabel/mergedLabel    <br>
              合并的数据标注情感：all_asc_tweetsOutput/filterData/HumanLabel/mergedSentiment   <br>
     统计 mergeLabel中正类／负类的数据量比例   <br>
+    
         情感倾向  | 微博数量
         ------------- | -------------
         正类	  | 994822
@@ -163,6 +163,7 @@ FeatureExtraction
         标注的中性数据	  | 100
 
     注意类别标注： <br>
+    
         类别  | 类别标注
         ------------- | -------------
         positive	  | 1
@@ -171,101 +172,110 @@ FeatureExtraction
         unknown	  | 2
     
 ## 处理混合数据
->>divide.py     <br>
+>divide.py     <br>
     删除掉输出的sentiment 和 label, 因为已经之前有标注好的    <br>
-    ProcessingData/PreprocessandgetFrequency.py:    <br>
-    SentimentDiffusion/checkposrelation.py: <br>
-    RelationProcess/relationsentiment.py:   <br>
-    StatisticData   <br>
-        allusersametweetvar.py   <br>
-        check@relationsentiment.py <br>
-        checkhyperlinkgraph.py   <br>
-        getEachAuthorSentiemnt.py     <br>
-
-    FeatureProcess  <br>
-        getRelationAtt.py : 根据tweetrelation得到relation feature （parent，child）    <br>
+>>ProcessingData/PreprocessandgetFrequency.py:    <br>
+>>SentimentDiffusion/checkposrelation.py: <br>
+>>RelationProcess/relationsentiment.py:   <br>
+>>StatisticData/allusersametweetvar.py   <br>
+>>StatisticData/check@relationsentiment.py <br>
+>>StatisticData/checkhyperlinkgraph.py   <br>
+>>StatisticData/getEachAuthorSentiemnt.py     <br>
+>>FeatureProcess/getRelationAtt.py : 根据tweetrelation得到relation feature （parent，child）    <br>
         
 ## 处理某个话题领域的话题相关情感词
-allTweetsPreprocess/divide.py  <br>
-ProcessingData/PreprocessandgetFrequency.py  <br>
-SentimentDiffusion/checkposrelation.py  <br>
-RelationProcess/relationsentiment.py  <br>
-FeatureProces/getRelationAtt.py  <br>
+>allTweetsPreprocess/divide.py  <br>
+>ProcessingData/PreprocessandgetFrequency.py  <br>
+>SentimentDiffusion/checkposrelation.py  <br>
+>RelationProcess/relationsentiment.py  <br>
+>FeatureProces/getRelationAtt.py  <br>
         
-        
->all_asc_tweetsOutput   <br>
->>EmocCloseData     <br>
->>filterEmocData    <br>
->>hownet    <br>
->>hownetPMI <br>
->>wordnet   <br>
->>wordnetPMI    <br> 
 
 
+##抽取目标话题的情感词集和目标词集（使用Java程序）
+>输入：
+>>public word set, publicwordPMI 和 content,author.name
+>输出：
+>>dependency relation，Opinion word set 和 target word set
+    
 
-4 Opinion word and target word extraction
-    输入： public word set, publicwordPMI 和 content,author.name
-    使用Java程序得到dependency relation，Opinion word set 和 target word set
+##合并所有话题下的目标话题相关情感词
 
-4.2 合并所有话题下的topicword
-    allTweetsPreprocess/mergeTopicword.py :
-    输出：all_asc_tweetsOutput/SpecialDomain/alltopicword
+>allTweetsPreprocess/mergeTopicword.py :
+>输出：
+>>all_asc_tweetsOutput/SpecialDomain/alltopicword
 
-5. 得到某个话题领域的特征矩阵
-    allTweetsPreprocess
-        训练数据，测试数据
-        MergeToGetFM.py ：根据各个特征，得到不同的特征矩阵
-        输出：主要FeatureMatrixWithNPWRelation
+##得到某个话题领域的特征矩阵
+
+>allTweetsPreprocess/MergeToGetFM.py
+    根据各个特征，得到不同的特征矩阵
+>输出：
+>>主要FeatureMatrixWithNPWRelation
 
 
-6. 从混合话题数据中抽取出初始训练数据。选择正、中、负 1:1:1 的初始训练数据
+##从混合话题数据中抽取出初始训练数据。选择正、中、负 1:1:1 的初始训练数据
     训练数据
-    allTweetsPreprocess/RandomSamplingData.py : 蓄水池方法
-    输出除了训练数据和测试数据的特征向量，还包含precontent
+>allTweetsPreprocess/RandomSamplingData.py : 蓄水池方法
+>>输出除了训练数据和测试数据的特征向量，还包含precontent
 
-7. 生成arff的前缀
-    allTweetsPreprocess/generateAttPrefix.py
+##生成arff的前缀
+>allTweetsPreprocess/generateAttPrefix.py
 
-8. 数据格式转换为spark mllib的格式
-    allTweetsPreprocess/formatConvert.py:
+##数据格式转换为spark mllib的格式
+>allTweetsPreprocess/formatConvert.py:
     将weka格式的数据转化为spark mllib数据要求的格式
     对于label和topicname的对应：
-        positive:0
-        neutral:1
-        negative:2
-        unknown:3
+    
+        类别  | 类别标注
+        ------------- | -------------
+        positive	  | 0
+        neutral	  | 1
+        negative	  | 2
+        unknown	  | 3
 
-    属性：
-    20000 表情符号
-    20001 否定词个数
-    20002 年份
-    20003 月份
-    20004 日期
-    20005 小时
-    20006 分钟
-    20007 父节点
-    20008 子节点
-    20009 话题
-    20010 标记
-8. 计算topic word在每个tweet中出现的次数
-    训练数据，测试数据，跑两次
-    getTopicWordFreq.py 输出格式： topicwordNo tweetId:freq tweetId:freq ...
-    getTweetWordStat.py 输出格式： tweetId wordNo:freq wordNo:freq ...
+    特征集中属性与下标对应关系：
+    
+    属性下标  | 属性
+    ------------- | -------------
+    20000	  | 表情符号
+    20001	  | 否定词个数
+    20002	  | 年份
+    20003	  | 月份 
+    20004	  | 日期
+    20005	  | 小时
+    20006	  | 分钟
+    20007	  | 父节点
+    20005	  | 小时
+    20006	  | 分钟
+    20007	  | 父节点
+    20008	  | 子节点
+    20009	  | 话题
+    20010	  | 标记
+   
+##计算topic word在每个tweet中出现的次数(训练数据，测试数据，跑两次)
+>getTopicWordFreq.py 输出格式： topicwordNo tweetId:freq tweetId:freq ...
+>getTweetWordStat.py 输出格式： tweetId wordNo:freq wordNo:freq ...
 
-8.2 将处理好的数据move到AdaptiveCotrain工程目录下
-    allTweetsPreprocess/moveData.bash
-7. 情感分类 AdaptiveCotrain
+##TASC算法，自适应目标话题
+>allTweetsPreprocess/moveData.bash
+>>将处理好的数据move到AdaptiveCotrain工程目录下
 
-8. 使用 StanfordParser／GenerateTuples生成三元组
-    通过moveTASC2Tuple.sh将AdaptiveCotrain生成的各类情感词移到 StanfordParser 目录下
-    使用generateTuples.sh批量生成三元组(话题相关情感词)
-    生成通用话题情感词三元组：generatePublicWordTuples.sh
 
-9. 将不同话题下的不同分类结果的二元组合并到一个文件中
-   mergeTuples.sh  合并二元组 ＝》
-topicname   author     dependentWordString(opinion word) weight
-例子：
-DamnItsTrue     sekarAthaya        my      0.43459480489818014
+##生成三元组
+>StanfordParser／GenerateTuples生成三元组(JAVA)
+>moveTASC2Tuple.sh
+    将AdaptiveCotrain生成的各类情感词移到 StanfordParser 目录下   <br>
+    使用generateTuples.sh批量生成三元组(话题相关情感词) <br>
+    生成通用话题情感词三元组：generatePublicWordTuples.sh    <br>
 
-10.考虑3个变量的组合：author topicdomain   opinionword
-    statistic.sh
+##三元组处理
+    
+>mergeTuples.sh 
+>>将不同话题下的不同分类结果的二元组合并到一个文件中
+>>topicname   author     dependentWordString(opinion word) weight   <br>
+>>例子：   <br>
+>>DamnItsTrue     sekarAthaya        my      0.43459480489818014    <br>
+
+>statistic.sh
+>>考虑3个变量的组合：author topicdomain   opinionword
+    
