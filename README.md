@@ -200,9 +200,10 @@ FeatureExtraction
 
 
 ##抽取目标话题的情感词集和目标词集（使用Java程序）
->输入：
->>public word set, publicwordPMI 和 content,author.name
->输出：
+>输入：    <br>
+>>public word set, publicwordPMI 和 content,author.name  <br>
+
+>输出：    <br>
 >>dependency relation，Opinion word set 和 target word set
     
 
@@ -230,7 +231,7 @@ FeatureExtraction
 
 ##数据格式转换为spark mllib的格式
 >allTweetsPreprocess/formatConvert.py:  <br>
-    将weka格式的数据转化为spark mllib数据要求的格式
+    将weka格式的数据转化为spark mllib数据要求的格式 <br>
     对于label和topicname的对应：
     
         类别  | 类别标注
@@ -240,7 +241,7 @@ FeatureExtraction
         negative	  | 2
         unknown	  | 3
 
-    特征集中属性与下标对应关系：
+    特征集中属性与下标对应关系：  <br>
     
     
     
@@ -263,10 +264,11 @@ FeatureExtraction
     
    
 ##计算topic word在每个tweet中出现的次数(训练数据，测试数据，跑两次)
->getTopicWordFreq.py 
->>输出格式： topicwordNo tweetId:freq tweetId:freq ...
->getTweetWordStat.py 
->>输出格式： tweetId wordNo:freq wordNo:freq ...
+>getTopicWordFreq.py    <br>
+>>输出格式： topicwordNo tweetId:freq tweetId:freq ...   <br>
+
+>getTweetWordStat.py    <br>
+>>输出格式： tweetId wordNo:freq wordNo:freq ... <br>
 
 ##TASC算法，自适应目标话题
 >allTweetsPreprocess/moveData.bash
