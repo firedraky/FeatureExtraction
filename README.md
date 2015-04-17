@@ -19,12 +19,13 @@ Dictionary：<br>
 >>publicwordPMI<br> 
 >>WORDPMI<br> 
 >>mergeWordnetandhownet.py<br>
-用于将两个情感词库合并，同时去重，得到公共情感词PMI库<br>
+    用于将两个情感词库合并，同时去重，得到公共情感词PMI库<br>
+
 >input<br>
 >>sorteddata<br>
-按时间排序，并且有一个格式的源数据<br>
+    按时间排序，并且有一个格式的源数据<br>
 >>topicwordPMI<br>
-后续得到的话题相关的情感词PMI-IR值<br>
+    后续得到的话题相关的情感词PMI-IR值<br>
 
 >output<br>
 
