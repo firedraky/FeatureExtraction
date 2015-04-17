@@ -5,7 +5,12 @@ FeatureExtraction
 
 ##目录结构：
 
->Dictionary
+>Dictionary<br>
+1）主要包含了两个公共情感词库：hownet和wordnet<br>
+2）由PMI-IR计算共现次数，得到的hownetPMI值和wordnetPMI<br>
+3）合并两个PMI文件，得到情感词的WORDPMI<br>
+4）选择得到公共情感词的PMI文件<br>
+由于公共情感词基本不变，所以该目录的结构和文件也无需修改。<br>
 >>hownet<br>
 >>hownetPMI<br>
 >>wordnet<br>
@@ -13,19 +18,30 @@ FeatureExtraction
 >>publicwordPMI<br> 
 >>WORDPMI<br> 
 >>mergeWordnetandhownet.py<br>
+1.Dictionary：
+数据：
 
+脚本：
+1）mergeWordnetandhownet.py ： 用于将两个情感词库合并，同时去重，得到公共情感词PMI库
+2.input：
+1）sorteddata：按时间排序，并且有一个格式的源数据
+2）topicwordPMI：后续得到的话题相关的情感词PMI-IR值
 >input<br>
->>sorteddata
->>topicwordPMI
->output
->Divide
->>divide.py
->ProcessingData
->>PreprocessandgetFrequency.py
->SentimentDiffusion
->>checkposrelation.py
->RelationProcess
->>relationsentiment.py
+>>sorteddata<br>
+>>topicwordPMI<br>
+
+>output<br>
+
+>Divide<br>
+>>divide.py<br>
+>ProcessingData<br>
+>>PreprocessandgetFrequency.py<br>
+
+>SentimentDiffusion<br>
+>>checkposrelation.py<br>
+
+>RelationProcess<br>
+>>relationsentiment.py<br>
 
 
 -Dictionary
@@ -78,18 +94,7 @@ FeatureExtraction
 	-FeatureMatrixWithoutNPW
 
 二、目录内容说明：
-1.Dictionary：
-数据：
-1）主要包含了两个公共情感词库：hownet和wordnet
-2）由PMI-IR计算共现次数，得到的hownetPMI值和wordnetPMI
-3）合并两个PMI文件，得到情感词的WORDPMI
-4）选择得到公共情感词的PMI文件
-由于公共情感词基本不变，所以该目录的结构和文件也无需修改。
-脚本：
-1）mergeWordnetandhownet.py ： 用于将两个情感词库合并，同时去重，得到公共情感词PMI库
-2.input：
-1）sorteddata：按时间排序，并且有一个格式的源数据
-2）topicwordPMI：后续得到的话题相关的情感词PMI-IR值
+
 
 3.DivideData：
 正向表情符号：:),;), :-),^_^,^^,:-),-),:D,;],:],:P,;P,:p,;p,-__-,-_-
