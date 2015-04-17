@@ -232,7 +232,7 @@ FeatureExtraction
 ##数据格式转换为spark mllib的格式
 >allTweetsPreprocess/formatConvert.py:  <br>
     将weka格式的数据转化为spark mllib数据要求的格式 <br>
-    对于label和topicname的对应：
+    对于label和topicname的对应：<br>
     
         类别  | 类别标注
         ------------- | -------------
@@ -241,9 +241,7 @@ FeatureExtraction
         negative	  | 2
         unknown	  | 3
 
-    特征集中属性与下标对应关系：  <br>
-    
-    
+>特征集中属性与下标对应关系：  <br>
     
     属性下标  | 属性
     ------------- | -------------
