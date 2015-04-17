@@ -6,8 +6,8 @@ FeatureExtraction
 ##目录结构：
 
 >Dictionary
->>hownet
->>hownetPMI
+>>hownet<br>
+>>hownetPMI<br>
 >>wordnet
 >>wordnetPMI
 >>publicwordPMI
