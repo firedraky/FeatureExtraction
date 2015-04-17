@@ -118,11 +118,12 @@ FeatureExtraction
 >>all_asc_tweetsOutput/HashTagStat HashTag统计信息 <br>
 >>手工过滤，筛选20个话题 all_asc_tweetsOutput/topicData/   <br>
     
-    话题名称  | 微博数量    | 话题名称  | 微博数量
-    ------------- | -------------   ｜   ------------- | -------------
+    
+    话题名称  | 微博数量    |话题名称 | 微博数量
+    ------------- | -------------   |   ------------- | -------------
     BieberD3D	  | 857 | DamnItsTrue	  | 608
     Egypt	  | 2148    |   Superbowl	  | 2344
-    MentionKe	  | 3749    |   shoutout	  | 2933
+    MentionKe	  | 3749   |   shoutout	  | 2933
     NEVERSAYNEVER3D	  | 896 |   icantdateyou	  | 667 
     TeamFollowBack	  | 1495    |   fb	  | 820
     Twitition	  | 1467    |     februarywish	  | 739
@@ -130,6 +131,7 @@ FeatureExtraction
     improudtosay	  | 563 |    pickone	  | 643
     jfb	  | 1560    |   purpleglasses	  | 744
     nowplaying	  | 5888    |   nw	  | 669
+    
     
 ##HashTag 人工标注数据
 >humanLabel.py     <br>
