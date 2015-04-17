@@ -103,23 +103,19 @@ FeatureExtraction
 封闭数据集：all_asc_tweetsOutput/filterData/EmocCloseData <br>
 ****
 
-##目录结构：
+##根据需求过滤数据：
 
 
->FilterData    <br>
-    根据需求过滤数据
->>fitlerData.py     <br>
+>FilterData/fitlerData.py    <br>
     根据需求过滤数据,得到带表情符号的数据，以及通过带表情符号得到封闭数据集    <br>
     输出： <br>
     all_asc_tweetsOutput/filterEmocData 含有表情符号的数据集 1208266条tweets   <br>
     all_asc_tweetsOutput/EmocCloseData 封闭数据集  1915200条tweets    <br>
-
->allTweetsPreprocess   <br>
-    该目录下包含所有大数据处理脚本
+    
 ##HashTag 筛选话题
->>statHashTag.py     <br>
-    输出：all_asc_tweetsOutput/HashTagStat HashTag统计信息 <br>
-    手工过滤，筛选20个话题 all_asc_tweetsOutput/topicData/   <br>
+>statHashTag.py     <br>
+>>输出：all_asc_tweetsOutput/HashTagStat HashTag统计信息 <br>
+>>手工过滤，筛选20个话题 all_asc_tweetsOutput/topicData/   <br>
     
     话题名称  | 微博数量
     ------------- | -------------
