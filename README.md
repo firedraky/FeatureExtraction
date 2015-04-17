@@ -13,6 +13,7 @@ FeatureExtraction
 >>publicwordPMI<br> 
 >>WORDPMI<br> 
 >>mergeWordnetandhownet.py<br>
+
 >input<br>
 >>sorteddata
 >>topicwordPMI
